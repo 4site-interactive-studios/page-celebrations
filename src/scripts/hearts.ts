@@ -562,4 +562,4 @@ export class Hearts extends Celebration {
 
 window.Hearts = Hearts;
 
-export {};
+export { };

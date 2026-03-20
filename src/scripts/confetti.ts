@@ -43,6 +43,27 @@ export class Confetti extends Celebration {
         this.optionsInput = options && typeof options === 'object' ? options : {};
         this.options = this.sanitizeOptions(this.optionsInput);
         this.log('Creating confetti instance with options:', '🟢', options);
+
+        // Ensure the render canvas and context are ready during construction
+        this.ensureRenderCanvas();
+        if (this.renderCanvas) {
+            this.renderCtx = this.renderCanvas.getContext('2d');
+            this.resizeRenderCanvas();
+        }
+
+        // Pre-stage particles for the first burst
+        if (this.renderCanvas) {
+            const colors = this.options.colors.map((c) => this.hexToRgb(c));
+            const particleCount = Math.max(0, Math.floor(this.options.particleCount));
+
+            for (let i = 0; i < particleCount; i++) {
+                const originY = Math.random() * this.canvasSize.height;
+                const color = colors[i % colors.length];
+                this.particles.push(this.randomPhysics(color, originY));
+            }
+
+            this.log(`Pre-staged ${particleCount} particles for the first burst`, '🎉');
+        }
     }
 
     public start(): Promise<void> {
@@ -336,4 +357,4 @@ export class Confetti extends Celebration {
 
 window.Confetti = Confetti;
 
-export {};
+export { };
