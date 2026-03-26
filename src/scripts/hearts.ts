@@ -439,8 +439,8 @@ export class Hearts extends Celebration {
 
     private getSpawnX(): number {
         const minSpacing = 140;
-        const sidePadding = 90;
         const animationWidth = this.getAnimationWidth();
+        const sidePadding = animationWidth < 450 ? animationWidth / 10 : 90;
         const maxX = Math.max(sidePadding, animationWidth - sidePadding);
         let candidate = animationWidth / 2;
 
