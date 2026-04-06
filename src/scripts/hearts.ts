@@ -353,9 +353,9 @@ export class Hearts extends Celebration {
             const heartX = 16 * Math.pow(Math.sin(angle), 3);
             const heartY =
                 13 * Math.cos(angle) -
-                5 * Math.cos(2 * angle) -
+                4 * Math.cos(2 * angle) -
                 2 * Math.cos(3 * angle) -
-                Math.cos(4 * angle);
+                Math.cos(3 * angle);
             const drawX = centerX + heartX * heartScale;
             const drawY = centerY - heartY * heartScale;
             if (angle === 0) {
@@ -374,10 +374,8 @@ export class Hearts extends Celebration {
         ctx.fillStyle = heartGradient;
         ctx.fill();
         ctx.lineWidth = Math.max(2, size * 0.03);
-        ctx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
-        ctx.stroke();
 
-        const maxTextWidth = size * 0.5;
+        const maxTextWidth = size * 0.75;
         const baseFontSize = options.fontSize;
         const lineHeight = baseFontSize * 1.22;
         const totalTextHeight = lines.length * lineHeight;
